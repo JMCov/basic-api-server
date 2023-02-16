@@ -25,7 +25,7 @@ router.post('/food', async (req, res, next) => {
 //IS IT THOUGH
 router.get('/food/:id', async (req, res, next) => {
   const id = req.params.id;
-  const food = await foodModel.findById(id);
+  const food = await foodModel.findByPk(id);
   res.status(200).send(food);
 });
 //IS IT THOUGH

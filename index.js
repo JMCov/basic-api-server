@@ -8,4 +8,4 @@ const { sequelize } = require('./src/models');
 sequelize.sync().then(() => { 
   console.log('Successful Connection');
   start();
-}).catch(err => console.log(err));
+}).catch(err => console.error(err));

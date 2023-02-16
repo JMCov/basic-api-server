@@ -25,15 +25,15 @@ router.post('/clothes', async (req, res, next) => {
 //IS IT THOUGH
 router.get('/clothes/:id', async (req, res, next) => {
   const id = req.params.id;
-  const clothes = await clothesModel.findById(id);
+  const clothes = await clothesModel.findByPk(id);
   res.status(200).send(clothes);
 });
 //IS IT THOUGH
 
 router.put('/clothes/:id', async (req, res, next) => {
   try {
-    const id = req.params.id;
-    const updatedClothes = await clothesModel.update(id, req.body);
+   
+    const updatedClothes = await clothesModel.update(req.body, {where: {id: req.params.id}});
     res.status(200).send(updatedClothes);
   } catch (err) {
     next(err);
@@ -42,8 +42,8 @@ router.put('/clothes/:id', async (req, res, next) => {
 
 router.delete('/clothes/:id', async (req, res, next) => {
   try {
-    const id = req.params.id;
-    await clothesModel.delete(id);
+    
+    await clothesModel.destroy({where: {id: req.params.id}});
     res.status(200).send('Deleted');
   } catch (err) {
     next(err);
